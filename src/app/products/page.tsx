@@ -20,7 +20,6 @@ export default async function ProductsPage() {
             {products.map((product) => {
               const mainImage = product.images[0]
               const mainVariant = product.variants[0]
-              const price = mainVariant?.price
 
               return (
                 <a
@@ -44,9 +43,9 @@ export default async function ProductsPage() {
                   <h2 className="font-medium text-gray-900 group-hover:underline">
                     {product.title}
                   </h2>
-                  {price && (
+                  {mainVariant && (
                     <p className="text-gray-600 mt-1">
-                      ${parseFloat(price.amount).toFixed(2)} {price.currencyCode}
+                      ${mainVariant.price.toFixed(2)} {mainVariant.currency}
                     </p>
                   )}
                 </a>

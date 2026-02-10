@@ -14,14 +14,14 @@ export default function AddToCartSection({ product }: Props) {
   return (
     <div className="space-y-6">
       {/* Price */}
-      {selectedVariant?.price && (
+      {selectedVariant && (
         <div className="flex items-baseline gap-2">
           <span className="text-2xl font-bold text-gray-900">
-            ${parseFloat(selectedVariant.price.amount).toFixed(2)}
+            ${selectedVariant.price.toFixed(2)}
           </span>
           {selectedVariant.compareAtPrice && (
             <span className="text-lg text-gray-500 line-through">
-              ${parseFloat(selectedVariant.compareAtPrice.amount).toFixed(2)}
+              ${selectedVariant.compareAtPrice.toFixed(2)}
             </span>
           )}
         </div>
@@ -40,7 +40,7 @@ export default function AddToCartSection({ product }: Props) {
           >
             {product.variants.map((variant) => (
               <option key={variant.id} value={variant.id}>
-                {variant.title} - ${parseFloat(variant.price.amount).toFixed(2)}
+                {variant.title} - ${variant.price.toFixed(2)}
               </option>
             ))}
           </select>

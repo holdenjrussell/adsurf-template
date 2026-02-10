@@ -31,14 +31,13 @@ export default async function CollectionPage({ params }: Props) {
         </div>
 
         {/* Products Grid */}
-        {collection.products.length === 0 ? (
+        {!collection.products || collection.products.length === 0 ? (
           <p className="text-gray-500">No products in this collection.</p>
         ) : (
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
             {collection.products.map((product) => {
               const mainImage = product.images[0]
               const mainVariant = product.variants[0]
-              const price = mainVariant?.price
 
               return (
                 <a
@@ -62,9 +61,9 @@ export default async function CollectionPage({ params }: Props) {
                   <h2 className="font-medium text-gray-900 group-hover:underline">
                     {product.title}
                   </h2>
-                  {price && (
+                  {mainVariant && (
                     <p className="text-gray-600 mt-1">
-                      ${parseFloat(price.amount).toFixed(2)} {price.currencyCode}
+                      ${mainVariant.price.toFixed(2)} {mainVariant.currency}
                     </p>
                   )}
                 </a>

@@ -3,9 +3,7 @@
 import { useCart } from '@adsurf/storefront-sdk'
 
 export default function CartPage() {
-  const { items, removeItem, updateQuantity, getSubtotal, clearCart } = useCart()
-
-  const subtotal = getSubtotal()
+  const { items, removeItem, updateQuantity, subtotal, clearCart } = useCart()
 
   if (items.length === 0) {
     return (
@@ -49,8 +47,8 @@ export default function CartPage() {
               <div className="w-24 h-24 bg-gray-100 rounded-lg overflow-hidden flex-shrink-0">
                 {item.image ? (
                   <img
-                    src={item.image}
-                    alt={item.title}
+                    src={item.image.url}
+                    alt={item.image.altText || item.title}
                     className="w-full h-full object-cover"
                   />
                 ) : (
